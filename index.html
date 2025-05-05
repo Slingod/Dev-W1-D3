@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini RPG Interactif</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Mini RPG</h1>
+
+  <div id="game-log"></div>
+
+  <div id="character-selection">
+    <p>Choisissez votre personnage :</p>
+    <input type="text" id="player-name" placeholder="Entrez votre nom" />
+    <button id="choose-warrior">👊 Guerrier</button>
+    <button id="choose-mage">✨ Mage</button>
+  </div>
+
+  <div id="battlefield" style="display:none">
+    <div class="character player">
+      <img src="images/guerrier.png" id="player-img" alt="Joueur">
+      <p id="player-name-label">Nom</p>
+      <p id="player-hp-label">HP</p>
+    </div>
+    <div class="character enemy">
+      <img src="images/mage.png" id="enemy-img" alt="Ennemi">
+      <p id="enemy-name-label">Nom</p>
+      <p id="enemy-hp-label">HP</p>
+    </div>
+  </div>
+
+  <div id="character-info">
+    <h2 id="character-name">Nom du personnage</h2>
+    <p id="character-health">Santé : 100</p>
+    <p id="character-mana">Mana : 50</p>
+  </div>
+
+  <div id="actions">
+    <button id="btn-attack">Arthur attaque Merlin</button>
+    <button id="btn-spell">Merlin lance un sort sur Arthur</button>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
