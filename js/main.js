@@ -1,23 +1,37 @@
+// js/main.js
 import { log, gameOver } from './utils.js';
 import { Fighter }    from './Fighter.js';
 import { Paladin }    from './Paladin.js';
 import { Monk }       from './Monk.js';
 import { Berzerker }  from './Berzerker.js';
 import { Assassin }   from './Assassin.js';
+import { Wizard }     from './Wizard.js';
+import { Ranger }     from './Ranger.js';
 
-const classes = { fighter: Fighter, paladin: Paladin, monk: Monk, berzerker: Berzerker, assassin: Assassin };
-let combatants = [];
-let player = null;
-let currentTurn = 1;
-const maxTurns = 10;
+const classes = {
+  fighter:    Fighter,
+  paladin:    Paladin,
+  monk:       Monk,
+  berzerker:  Berzerker,
+  assassin:   Assassin,
+  wizard:     Wizard,
+  ranger:     Ranger
+};
 
 const selectors = {
   fighter:    document.getElementById("choose-fighter"),
   paladin:    document.getElementById("choose-paladin"),
   monk:       document.getElementById("choose-monk"),
   berzerker:  document.getElementById("choose-berzerker"),
-  assassin:   document.getElementById("choose-assassin")
+  assassin:   document.getElementById("choose-assassin"),
+  wizard:     document.getElementById("choose-wizard"),
+  ranger:     document.getElementById("choose-ranger")
 };
+
+let combatants = [];
+let player = null;
+let currentTurn = 1;
+const maxTurns = 10;
 
 Object.entries(selectors).forEach(([key, btn]) => {
   btn.addEventListener("click", () => {
@@ -85,8 +99,19 @@ function doTurn(actionType) {
   const target    = combatants.filter(c => c.alive && c !== player)[targetIdx];
 
   // Tour du joueur
-  if (actionType === 'attack')    player.attack(target);
-  else                             player.specialAttack(target);
+  if (actionType === 'attack') {
+    player.attack(target);
+  } else {
+    // Attaque spéciale
+    if (player instanceof Ranger) {
+      // Ranger : attaque tous les autres vivants
+      const ennemis = combatants.filter(c => c.alive && c !== player);
+      player.specialAttack(ennemis);
+    } else {
+      // Toutes les autres classes prennent une seule cible
+      player.specialAttack(target);
+    }
+  }
 
   updateState();
   if (checkEnd()) return;
@@ -95,9 +120,16 @@ function doTurn(actionType) {
   for (let cpu of combatants.filter(c => c.alive && c !== player)) {
     const possibles = combatants.filter(x => x.alive && x !== cpu);
     const choice    = possibles[Math.floor(Math.random() * possibles.length)];
-    Math.random() < 0.5
-      ? cpu.attack(choice)
-      : cpu.specialAttack(choice);
+    if (cpu instanceof Ranger) {
+      // CPU Ranger attaque tous
+      const ennemis = combatants.filter(c => c.alive && c !== cpu);
+      cpu.specialAttack(ennemis);
+    } else {
+      // CPU autres classes, choix aléatoire attaque ou spécial
+      Math.random() < 0.5
+        ? cpu.attack(choice)
+        : cpu.specialAttack(choice);
+    }
     updateState();
     if (checkEnd()) return;
   }
