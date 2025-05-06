@@ -2,43 +2,30 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Mini RPG Interactif</title>
+  <title>Mini RPG – Free-for-All</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mini RPG</h1>
+  <h1>Mini RPG – Free-for-All</h1>
 
   <div id="game-log"></div>
 
   <div id="character-selection">
     <p>Choisissez votre personnage :</p>
     <input type="text" id="player-name" placeholder="Entrez votre nom" />
-    <button id="choose-warrior">👊 Guerrier</button>
-    <button id="choose-mage">✨ Mage</button>
+    <button id="choose-fighter">⚔️ Fighter</button>
+    <button id="choose-paladin">🛡️ Paladin</button>
+    <button id="choose-monk">🙏 Monk</button>
+    <button id="choose-berzerker">🔥 Berzerker</button>
+    <button id="choose-assassin">🗡️ Assassin</button>
   </div>
 
-  <div id="battlefield" style="display:none">
-    <div class="character player">
-      <img src="images/guerrier.png" id="player-img" alt="Joueur">
-      <p id="player-name-label">Nom</p>
-      <p id="player-hp-label">HP</p>
-    </div>
-    <div class="character enemy">
-      <img src="images/mage.png" id="enemy-img" alt="Ennemi">
-      <p id="enemy-name-label">Nom</p>
-      <p id="enemy-hp-label">HP</p>
-    </div>
-  </div>
+  <div id="battlefield" style="display:none"></div>
 
-  <div id="character-info">
-    <h2 id="character-name">Nom du personnage</h2>
-    <p id="character-health">Santé : 100</p>
-    <p id="character-mana">Mana : 50</p>
-  </div>
-
-  <div id="actions">
-    <button id="btn-attack">Arthur attaque Merlin</button>
-    <button id="btn-spell">Merlin lance un sort sur Arthur</button>
+  <div id="actions" style="display:none">
+    <select id="target-select"></select>
+    <button id="btn-attack">Attaquer</button>
+    <button id="btn-special">Attaque Spéciale</button>
   </div>
 
   <script type="module" src="js/main.js"></script>
