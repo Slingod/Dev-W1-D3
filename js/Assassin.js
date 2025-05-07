@@ -4,7 +4,7 @@ import { log } from './utils.js';
 export class Assassin extends Character {
   constructor(name) {
     // hp 6, dmg 6, mana 20
-    super(name, 6, 6, 20, 'images/assassin.png');
+    super(name, 6, 7, 40, 'images/assassin.png');
   }
 
   specialAttack(target) {

@@ -3,8 +3,8 @@ import { log } from './utils.js';
 
 export class Berzerker extends Character {
   constructor(name) {
-    // hp 8, dmg 4, mana 0
-    super(name, 8, 4, 0, 'images/berzerk.png');
+    // hp 12, dmg 5, mana 0
+    super(name, 12, 5, 0, 'images/berzerk.png');
   }
 
   specialAttack() {

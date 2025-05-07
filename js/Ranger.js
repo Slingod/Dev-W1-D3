@@ -3,8 +3,8 @@ import { log } from './utils.js';
 
 export class Ranger extends Character {
   constructor(name) {
-    // Ranger : hp 14, dmg 3, mana 50
-    super(name, 14, 3, 50, 'images/ranger.png');
+    // Ranger : hp 10, dmg 3, mana 60
+    super(name, 10, 3, 60, 'images/ranger.png');
   }
 
   specialAttack(targets) {
